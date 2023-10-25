@@ -1,0 +1,23 @@
+@page "/"
+@using Financial
+@using Models.Financial
+@inject IFinancialService financialService
+
+<div class="row-layout master-view-container">
+    <IgbCombo Outlined="true" Data="financialBoxOfficeRevenue" Label="Label/Placeholder" ValueKey="Franchise" DisplayKey="Franchise" autoFocusSearch="true" DisableFiltering="true" class="combo" master_view-scope></IgbCombo>
+    <IgbSnackbar ActionText="Action" Action="@(e => _snackbar!.ToggleAsync())" @ref="_snackbar" class="snackbar" master_view-scope>
+        This is a message
+    </IgbSnackbar>
+</div>
+
+@code {
+    private List<BoxOfficeRevenueType> financialBoxOfficeRevenue = new();
+    private IgbSnackbar? _snackbar;
+
+    protected override async Task OnInitializedAsync()
+    {
+        financialBoxOfficeRevenue = await financialService.GetBoxOfficeRevenue();
+
+        await base.OnInitializedAsync();
+    }
+}
