@@ -1,0 +1,11 @@
+:host {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+}
+.button {
+  height: max-content;
+  flex-shrink: 0;
+}
